@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:titleTextColor="@android:color/white" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/root_v"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/action_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/tealPrimaryLite"
+                android:backgroundTint="@color/tealPrimaryLite"
+                android:onClick="onConnectClicked"
+                android:text="Start Recording"
+                android:textColor="@color/colorWhite"/>
+
+            <LinearLayout
+                android:id="@+id/content_vg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/graph_fl"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorWhite">
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/mChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/battery"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:visibility="gone" />-->
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/both_rg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".33"
+                        android:checked="true"
+                        android:text="Both"
+                        android:textColor="@color/tealPrimaryMid" />
+
+                    <RadioButton
+                        android:id="@+id/pulse_rg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".33"
+                        android:text="Pulse"
+                        android:textColor="@color/tealPrimaryMid" />
+
+                    <RadioButton
+                        android:id="@+id/temp_rg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".33"
+                        android:text="Temp"
+                        android:textColor="@color/tealPrimaryMid" />
+                </RadioGroup>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/lorange">
+
+                        <ImageView
+                            android:id="@+id/user_iv"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@color/orangePrimary"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_person_outline_black_72dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toEndOf="@id/user_iv"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="15dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Average Pulse"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="17sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/today_pulse_peak_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:text="5123"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="14sp"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="15dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Current Pulse"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="17sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/current_pulse_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:text="78 bpm"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="14sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/lorange">
+
+                        <ImageView
+                            android:id="@+id/user2_iv"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:background="@color/orangePrimary"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_person_outline_black_72dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toEndOf="@id/user2_iv"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="15dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Today's Peak"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="17sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/today_temp_peak_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:text="5123"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="14sp"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="15dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Current Temp"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="17sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:id="@+id/battery"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:text="78.6˚ C"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="14sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_home"
+            app:menu="@menu/activity_home_drawer" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>
+<!--<RelativeLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/root_v"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@color/colorWhite">-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/topbar_ll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/colorWhite"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="8dp">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/back_iv"-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:background="@color/colorWhite"-->
+            <!--android:padding="15dp"-->
+            <!--android:src="@drawable/ic_arrow_back_black_24dp"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/title_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_toRightOf="@id/back_iv"-->
+            <!--android:padding="10dp"-->
+            <!--android:textSize="15sp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:text="Live Data"-->
+            <!--android:textColor="@color/tealPrimaryDark"-->
+            <!--android:textStyle="bold"/>-->
+    <!--</RelativeLayout>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/action_connect"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:background="@color/tealPrimaryLite"-->
+        <!--android:backgroundTint="@color/tealPrimaryLite"-->
+        <!--android:onClick="onConnectClicked"-->
+        <!--android:text="Start Recording"-->
+        <!--android:textColor="@color/colorWhite"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/content_vg"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/topbar_ll"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/graph_fl"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="3"-->
+            <!--android:background="@color/colorWhite">-->
+            <!--<com.github.mikephil.charting.charts.LineChart-->
+                <!--android:id="@+id/mChart"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"/>-->
+        <!--</FrameLayout>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/device_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:visibility="gone" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/battery"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:visibility="gone" />-->
+
+        <!--<RadioGroup-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/both_rg"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="2"-->
+                <!--android:checked="true"-->
+                <!--android:text="Temp and Pulse"-->
+                <!--android:textColor="@color/tealPrimaryMid" />-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/pulse_rg"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Pulse"-->
+                <!--android:textColor="@color/tealPrimaryMid" />-->
+
+            <!--<RadioButton-->
+                <!--android:id="@+id/temp_rg"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Temp"-->
+                <!--android:textColor="@color/tealPrimaryMid" />-->
+        <!--</RadioGroup>-->
+
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/redPrimary">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/user_iv"-->
+                    <!--android:layout_width="60dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:background="@color/redPrimaryDark"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:src="@drawable/ic_person_outline_black_72dp" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_toEndOf="@id/user_iv"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:weightSum="2">-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:padding="15dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Today's Total"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="17sp"-->
+                            <!--android:textStyle="bold"/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/today_pulse_peak_tv"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:paddingTop="10dp"-->
+                            <!--android:text="5123"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="14sp"/>-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:padding="15dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Current Pulse"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="17sp"-->
+                            <!--android:textStyle="bold"/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/current_pulse_tv"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:paddingTop="10dp"-->
+                            <!--android:text="78 bpm"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="14sp"/>-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</RelativeLayout>-->
+        <!--</android.support.v7.widget.CardView>-->
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/redPrimary">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/user2_iv"-->
+                    <!--android:layout_width="60dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:background="@color/redPrimaryDark"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:src="@drawable/ic_person_outline_black_72dp" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_toEndOf="@id/user2_iv"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:weightSum="2">-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:padding="15dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Today's Peak"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="17sp"-->
+                            <!--android:textStyle="bold"/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/today_temp_peak_tv"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:paddingTop="10dp"-->
+                            <!--android:text="5123"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="14sp"/>-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:padding="15dp">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Today's Peak"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="17sp"-->
+                            <!--android:textStyle="bold"/>-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/current_temp_tv"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:paddingTop="10dp"-->
+                            <!--android:text="78.6˚ C"-->
+                            <!--android:textColor="@color/colorWhite"-->
+                            <!--android:textSize="14sp"/>-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</RelativeLayout>-->
+        <!--</android.support.v7.widget.CardView>-->
+    <!--</LinearLayout>-->
+
+    <!--<ProgressBar-->
+        <!--android:id="@+id/progressBar"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:visibility="visible" />-->
+
+<!--</RelativeLayout>-->

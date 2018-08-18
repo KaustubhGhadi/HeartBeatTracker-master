@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <!--<item-->
+            <!--android:id="@+id/nav_live"-->
+            <!--android:icon="@drawable/ic_menu_camera"-->
+            <!--android:title="Live" />-->
+        <item
+            android:id="@+id/nav_alerts"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Alerts" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_debug"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Debug" />
+        <!--<item-->
+        <!--android:id="@+id/nav_menu5"-->
+        <!--android:icon="@drawable/ic_menu_camera"-->
+        <!--android:title="Promo Code" />-->
+        <!--<item-->
+        <!--android:id="@+id/nav_my_booking"-->
+        <!--android:icon="@drawable/ic_menu_gallery"-->
+        <!--android:title="My Booking" />-->
+        <!--<item-->
+        <!--android:id="@+id/nav_my_waitlist"-->
+        <!--android:icon="@drawable/ic_menu_slideshow"-->
+        <!--android:title="My Waitlist" />-->
+        <!--<item-->
+        <!--android:id="@+id/nav_how_it_works"-->
+        <!--android:icon="@drawable/ic_menu_manage"-->
+        <!--android:title="How It Works" />-->
+        <!--<item-->
+        <!--android:id="@+id/nav_profile"-->
+        <!--android:icon="@drawable/ic_menu_gallery"-->
+        <!--android:title="Profile" />-->
+        <!--<item-->
+        <!--android:id="@+id/nav_wallete"-->
+        <!--android:icon="@drawable/ic_menu_slideshow"-->
+        <!--android:title="Wallet" />-->
+        <!--<item-->
+        <!--android:id="@+id/nav_promo_code"-->
+        <!--android:icon="@drawable/ic_menu_manage"-->
+        <!--android:title="Promo Code" />-->
+    </group>
+
+    <!--<item android:title="Communicate">-->
+    <!--<menu>-->
+    <!--<item-->
+    <!--android:id="@+id/nav_share"-->
+    <!--android:icon="@drawable/ic_menu_share"-->
+    <!--android:title="Share" />-->
+    <!--<item-->
+    <!--android:id="@+id/nav_send"-->
+    <!--android:icon="@drawable/ic_menu_send"-->
+    <!--android:title="Send" />-->
+    <!--</menu>-->
+    <!--</item>-->
+
+</menu>

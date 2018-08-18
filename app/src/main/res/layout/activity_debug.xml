@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:id="@+id/topbar_ll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back_iv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="15dp"
+            android:src="@drawable/ic_arrow_back_black_24dp"/>
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@id/back_iv"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:paddingLeft="10dp"
+            android:text="Raw Feeds"
+            android:textColor="@color/tealPrimaryDark"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/clear_db_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:paddingRight="10dp"
+            android:text="Clear DB"
+            android:background="@color/tealPrimaryDark"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/static1_vg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topbar_ll"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/action_connect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/tealPrimaryLite"
+            android:onClick="onConnectClicked"
+            android:text="PAIR NOW"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/sync_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/tealSecondaryDark"
+            android:text="SYNC NOW"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/live_data_vg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/static1_vg"
+        android:visibility="visible">
+        <TextView
+            android:id="@+id/battery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/feature_horizontal_margin"
+            android:layout_marginTop="@dimen/feature_device_name_margin_top"
+            android:background="@drawable/battery"
+            android:freezesText="true"
+            android:gravity="center"
+            android:text="@string/not_available"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"/>
+
+        <in.programmeraki.hbt.nrfkit.widget.TrebuchetTextView
+            android:id="@+id/device_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/feature_device_name_margin_top"
+            android:layout_toRightOf="@+id/battery"
+            android:ellipsize="end"
+            android:freezesText="true"
+            android:maxLines="1"
+            android:text="@string/hrs_default_name"
+            android:textAllCaps="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <in.programmeraki.hbt.nrfkit.widget.TrebuchetTextView
+            android:id="@+id/text_hrs_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/feature_horizontal_margin"
+            android:layout_marginTop="50dp"
+            android:ellipsize="end"
+            android:freezesText="true"
+            android:maxLines="1"
+            android:text="@string/not_available_value"
+            android:textSize="45sp"/>
+
+        <in.programmeraki.hbt.nrfkit.widget.TrebuchetTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/text_hrs_value"
+            android:layout_marginRight="@dimen/feature_horizontal_margin"
+            android:layout_marginTop="-10dp"
+            android:text="@string/hrs_value_unit"
+            android:textSize="16sp"/>
+
+        <in.programmeraki.hbt.nrfkit.widget.TrebuchetTextView
+            android:id="@+id/text_hrs_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/feature_horizontal_margin"
+            android:layout_marginTop="50dp"
+            android:ellipsize="end"
+            android:freezesText="true"
+            android:maxLines="1"
+            android:text="@string/not_available"
+            android:textSize="35sp"/>
+
+        <in.programmeraki.hbt.nrfkit.widget.TrebuchetTextView
+            android:id="@+id/text_hrs_position_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/text_hrs_value"
+            android:layout_marginLeft="@dimen/feature_horizontal_margin"
+            android:layout_marginTop="-10dp"
+            android:text="@string/hrs_position_label"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/live_data_vg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/content_vg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="Timestamp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Pulse"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Temp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Raw Feed"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+</RelativeLayout>

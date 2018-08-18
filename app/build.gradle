@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        applicationId "in.programmeraki.hbt"
+        minSdkVersion 18
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0.0"
+        resConfigs "en"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(':common')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    wearApp project(path: ':wear')
+
+    def room_version = "1.1.1"
+
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+
+    // nRF Toolbox is using Play Service 10.2.0 in order to make the app working in China:
+    // https://developer.android.com/training/wearables/apps/creating-app-china.html
+    //noinspection GradleDependency
+    implementation 'com.google.android.gms:play-services-wearable:10.2.0'
+
+    //noinspection GradleDependency
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    //noinspection GradleDependency
+    implementation 'com.android.support:design:27.1.1'
+
+    implementation 'no.nordicsemi.android:log:2.1.1'
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.1.0'
+
+    // The DFU Library is imported automatically from jcenter:
+    implementation 'no.nordicsemi.android:dfu:1.6.1'
+    // if you desire to build the DFU Library, clone the https://github.com/NordicSemiconductor/Android-DFU-Library project into DFULibrary folder,
+    // add it as a module into the project structure and uncomment the following line (and also the according lines in the settings.gradle):
+    // implementation project(':dfu')
+
+    // Import the BLE Library
+    implementation 'no.nordicsemi.android:ble:1.2.0'
+    // The BLE Library may be included from jcenter. If you want to modify the code,
+    // clone the project from GitHub and replace the line above with the following
+    // (and also the according lines in the settings.gradle):
+    // implementation project(':ble')
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    implementation 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
+
+    implementation 'it.neokree:MaterialNavigationDrawer:1.3.3'
+
+    implementation 'com.android.support:cardview-v7:27.1.1'
+
+    implementation('org.simpleframework:simple-xml:2.7.1') {
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'xpp3', module: 'xpp3'
+    }
+}

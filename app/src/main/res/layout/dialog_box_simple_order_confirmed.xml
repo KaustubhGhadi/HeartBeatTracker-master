@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/root_ll"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUCCESS"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:id="@+id/txt_title"
+        android:background="@color/tealPrimaryDark"
+        android:textColor="@color/colorWhite"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="User details updated."
+            android:textSize="13sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DONE"
+        android:textColor="@color/tealPrimaryDark"
+        android:layout_gravity="end"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:id="@+id/txt_next"/>
+
+</LinearLayout>
